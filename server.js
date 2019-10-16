@@ -7,12 +7,15 @@ app.use(express.urlencoded({extended : false}))
 app.use(express.static("public"));
 
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'password',
-  database : 'subs_and_users_db'
-});
+var connection = mysql.createConnection(
+	process.env.JAWDB_URL || 
+	{
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : 'password',
+	  database : 'subs_and_users_db'
+	}
+);
  
 connection.connect();
  
