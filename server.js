@@ -2,7 +2,7 @@ var path = require('path')
 var express = require('express');
 var app = express();
 
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended : false}))
 //making static assets
 app.use(express.static("public"));
 
