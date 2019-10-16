@@ -54,16 +54,20 @@ app.post('/signup', function(req, res){
 app.post('/login', function(req, res){
 	console.log(req.body)
 
+	// if (req.body.user_name = )
+
 	connection.query('SELECT * FROM users WHERE user_name=? and pass_d=?',
 		[req.body.user_name, req.body.pass_d],
 		function(error, results){
 			if (error) return res.send(error)
 
+			console.log(results)
+
 			if (results.length == 1) {
 
 				res.sendFile(path.join(__dirname,"protected/homepage.html"))
 			} else {
-				
+
 				res.redirect('/login.html')
 			}
 
