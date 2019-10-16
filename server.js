@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection(
-	process.env.JAWDB_URL || 
+	process.env.JAWSDB_URL || 
 	{
 	  host     : 'localhost',
 	  user     : 'root',
