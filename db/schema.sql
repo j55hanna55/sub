@@ -25,3 +25,13 @@ CREATE TABLE users(
 	PRIMARY KEY(id)
     -- FOREIGN KEY (user_sub_id) REFERENCES subs(id)
 );
+
+
+CREATE TABLE userssub(
+	id INT NOT NULL AUTO_INCREMENT,
+
+	user_s VARCHAR(255) NULL,
+ 	
+	PRIMARY KEY(id)
+    -- FOREIGN KEY (user_sub_id) REFERENCES subs(id)
+);

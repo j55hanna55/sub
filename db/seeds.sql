@@ -2,3 +2,5 @@ INSERT INTO subs (sub_id, sub_name, sub_price) VALUES (1, "Spotify Premium", "$1
 
 
 INSERT INTO users (full_name, user_name, email_e, pass_d) VALUES ("Jacob Hanna", "jacobh", "jacob@gmail.com", "12345"), ("Justin Goyena", "justingo", "justin@gmail.com", "12345"), ("Nicholai Casey", "ncasey", "nicholai@gmail.com", "12345");
+
+

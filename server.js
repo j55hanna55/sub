@@ -2,9 +2,20 @@ var path = require('path')
 var express = require('express');
 var app = express();
 
+var methodOverride = require('method-override')
+
+//we do this because we want PUT and DELETE methods for our routes
+	//integrate method override with express
+	// override with POST having ?_method=DELETE
+		app.use(methodOverride('_method'))
+
+
 app.use(express.urlencoded({extended : false}))
 //making static assets
 app.use(express.static("public"));
+
+
+
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection(
@@ -39,6 +50,8 @@ connection.connect();
 // 	}
 // });
 
+
+
 app.post('/signup', function(req, res){
 	console.log(req.body)
 
@@ -53,6 +66,44 @@ app.post('/signup', function(req, res){
 	)
 
 })
+
+app.post('/addsub', function(req, res){
+	console.log(req.body)
+
+	connection.query('INSERT INTO userssub (user_s) VALUES (?)',
+		[req.body.user_s],
+		function(error, results){
+			if (error) return res.send(error)
+
+			res.sendFile(path.join(__dirname,"public/mysub.html"))
+
+		}
+	)
+
+})
+
+app.delete('/delete', function(req, res){
+	// res.json(req.body);
+
+	if (req.body.id){
+		// ; DELETE FROM people;
+		// '1 AND DELETE FROM people'
+		connection.query('DELETE FROM userssub WHERE id = ?', [req.body.id], function (error, results, fields) {
+		  if (error) res.send(error)
+		  else res.redirect('/mysub.html');
+		});
+	}else{
+		res.send('you need an id')
+	}
+});
+
+
+app.get('/userssub', function(req, res){
+	connection.query('SELECT * FROM userssub ORDER BY id DESC', function (error, results, fields) {
+	  if (error) res.send(error)
+	  else res.json(results);
+	});
+});
 
 app.post('/login', function(req, res){
 	console.log(req.body)
