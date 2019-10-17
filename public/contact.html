@@ -145,21 +145,21 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Name">
+										<input id="1a" type="text" class="form-control" placeholder="Name">
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Email">
+										<input id="2a" type="text" class="form-control" placeholder="Email">
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Phone">
+										<input id="3a" type="text" class="form-control" placeholder="Phone">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+										<textarea name="" id="4a" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
 									</div>
 									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="Send Message">
+										<input id="77" type="submit" class="btn btn-primary btn-md" value="Send Message">
 									</div>
 								</div>
 								
@@ -190,6 +190,58 @@
 	
 	<!-- MAIN JS -->
 	<script src="/assets/js/main.js"></script>
+
+
+<!-- Firebase Reference -->
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+<script type="text/javascript">
+     var config = {
+    apiKey: "AIzaSyACj1zaiz7LT0JhDp60SPDq50SVu5Fpbxo",
+    authDomain: "subhub-b6170.firebaseapp.com",
+    databaseURL: "https://subhub-b6170.firebaseio.com",
+    projectId: "subhub-b6170",
+    storageBucket: "subhub-b6170.appspot.com",
+    messagingSenderId: "95045548939",
+    appId: "1:95045548939:web:3cbefe87467407ffe68d8e",
+    measurementId: "G-P7VE2ELJD3"
+  };
+
+    firebase.initializeApp(config);
+
+    // Create a variable to reference the database.
+    var database = firebase.database();
+
+    $('#77').on('click', function(){
+
+        event.preventDefault();
+
+
+    
+
+        var nam = $('#1a').val();
+        var em = $('#2a').val();
+        var su = $('#3a').val();
+        var me = $('#4a').val();
+
+        database.ref().push({
+            name: nam,
+            email: em,
+            phone: su,
+            message: me
+
+        });
+
+         $('#1a').val("");
+         $('#2a').val("");
+        $('#3a').val("");
+         $('#4a').val("");
+    });
+
+
+
+</script>
+
 
 	</body>
 </html>
